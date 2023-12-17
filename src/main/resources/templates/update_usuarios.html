@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:object="${cliente}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Atualizar Usuário</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/style9.css">
+	<script src="/js/validar.js"></script>
+
+	<!-- Adicionado script para preencher automaticamente a data de cadastro -->
+	<script>
+		function preencherDataCadastro() {
+			var dataCadastroField = document.getElementById("datacadastro");
+			var dataCadastro = new Date().toISOString().slice(0, 10);
+			dataCadastroField.value = dataCadastro;
+			return true; // Continue com a submissão do formulário
+		}
+	</script>
+
+
+</head>
+
+<body style="background-color: rgb(205, 227, 233);">
+	<nav>
+		<div>
+			<ul class="nav ">
+				<a class="navbar-brand" id="brand0" href="index.html">
+					<img src=" /img/icone.png" style="width: 120px;" class="img-fluid img-nav">
+				</a>
+				<li class="nav-item">
+					<a class="nav-link" href="index.html">Home</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="Destino.html">Destinos</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="Promoções.html">Promoções</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="Contato.html">Contato</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="usuarios.html" style="color: red">Usuarios</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="reserva.html" style="color: red">Reservas</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="passagem.html" style="color: red">Passagens</a>
+				</li>
+
+				<li>
+					<a href="create_usuarios.html">
+						<img src="/img/cadastrar.png" class="img-fluid loguin-img">
+					</a>
+				</li>
+
+			</ul>
+
+
+		</div>
+	</nav>
+
+
+	<main class="container mt-5">
+		<div class="row">
+			<div class="col-12 col-md-8 col-lg-6 mx-auto">
+				<div class="card bg-light">
+					<div class="card bg-light">
+						<article class="card-body mx-auto" style="max-width: 400px;">
+
+							<h4 class="card-title mt-3 text-left">Atualizar Usuario</h4>
+							<p style="color: red; font-weight: bold;">Campos obrigatórios*</p>
+							
+							<form th:action="@{/update_usuarios}" th:object="${cliente}"  method="post" onsubmit="return validar();">
+								<div class="form-group">
+									<label for="id_cliente" style="color: grey;"><strong>Id de usuário: ( Campo não editavel):</strong></label>
+									<input type="text" th:id="id_cliente" th:name="id_cliente" class="form-control"
+										th:value="${cliente.id_cliente}" readonly>
+								</div>
+
+
+								<div class="form-group">
+									<label for="nomecompleto"><strong>Nome*</strong></label> <input type="text"
+										th:id="nomecompleto" th:name="nomecompleto" class="form-control"
+										placeholder="Nome completo" th:value="${cliente.nomecompleto}">
+								</div>
+
+								<div class="form-group">
+									<label for="endereco"><strong>Endereço*</strong></label> <input type="text"
+										th:id="endereco" th:name="endereco" class="form-control"
+										placeholder="Digite o endereço" th:value="${cliente.endereco}">
+								</div>
+
+								<div class="form-group">
+									<label for="cep"><strong>Cep*</strong></label> <input type="text" th:id="cep"
+										th:name="cep" class="form-control" placeholder="Digite o cep"
+										th:value="${cliente.cep}">
+								</div>
+
+								<div class="form-group">
+									<label for="cpf"><strong>Cpf*</strong></label> <input type="text" th:id="cpf"
+										th:name="cpf" class="form-control" placeholder="Digite o seu cpf, apenas números!"
+										th:value="${cliente.cpf}">
+								</div>
+
+								<div class="form-group">
+									<label for="e_mail"><strong>E-mail* (ex: usuario@email.com)</strong></label> <input
+										type="text" th:id="e_mail" th:name="e_mail" class="form-control"
+										placeholder="Digite o seu e-mail" th:value="${cliente.e_mail}">
+								</div>
+
+								<div class="form-group">
+									<label for="senha"><strong>Senha* min 6 caracteres</strong></label> <input
+										type="password" th:id="senha" th:name="senha" class="form-control"
+										placeholder="Digite a sua senha com 6 dígitos" th:value="${cliente.senha}">
+								</div>
+
+								<div class="form-group">
+									<label for="telefone"><strong>Telefone*</strong></label> <input type="text"
+										th:id="telefone" th:name="telefone" class="form-control"
+										placeholder="Digite o seu telefone (máximo de 10 dígitos)"
+										th:value="${cliente.telefone}">
+								</div>
+
+
+								<div class="form-group">
+									<!--<label for="datacadastro"><strong>Data de cadastro:</strong></label>-->
+								<input type="hidden" th:id="datacadastro" th:name="datacadastro"
+										class="form-control" th:value="${cliente.datacadastro}" readonly>
+								</div>
+
+	 
+
+								<p></p>
+								<button type="submit" class="btn btn-primary">Atualizar Usuário</button>
+								<a href="/usuarios.html" class="btn btn-danger" style="margin-left: 10px">Cancelar</a>
+							</form>
+
+
+							<!-- Outros campos da entidade Usuarios -->
+
+							</form>
+
+
+					</div>
+				</div>
+			</div>
+	</main>
+
+	<!-- Seu rodapé aqui... -->
+
+</body>
+
+<footer>
+	<p>Boa viagem é uma marca registrada de boaviagem S.A | CNPJ: xxxx | Todos os direitos reservados. Os preços
+		anunciados neste site ou via e-mail promocional podem ser alterados. As fotos contidas nesta página são
+		meramente ilustrativas. Este site trabalha 100% em criptografia SSL.</p>
+</footer>
+
+</html>

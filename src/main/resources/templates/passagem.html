@@ -1,0 +1,121 @@
+ <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="./css/style11.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <div>
+            <ul class="nav ">
+                <a class="navbar-brand" id="brand0" href="index.html">
+                    <img src=" ./img/icone.png" style="width: 120px;" class="img-fluid img-nav">
+                </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="Destino.html">Destinos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="Promoções.html">Promoções</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Contato.html">Contato</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="usuarios.html" style="color: red">Usuarios</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="reserva.html" style="color: red">Reservas</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="passagem.html" style="color: red">Passagens</a>
+                </li>
+
+                <li>
+                    <a href="create_usuarios.html">
+                        <img src="./img/cadastrar.png" class="img-fluid loguin-img">
+                    </a>
+                </li>
+
+            </ul>
+
+
+ <main>
+
+        <section class="container">
+            <div class="p-4">
+                <a href="./index.html" class="btn btn-secondary mb-2 botao1">Voltar para home</a>
+
+                <div class="table-responsive">
+                    <a href="./create_passagem.html" class="btn btn-primary mb-2 botao1">Nova Passagem</a>
+                    <table class="table table-custom table-hover table-bordered">
+                        <h4 class="table-caption">Lista de Passagens</h4>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Id_passagem</th>
+                                <th scope="col">Destino</th>
+                                <th scope="col">Data de Ida</th>
+                                <th scope="col">Data de volta</th>
+                                <th scope="col">Empresa</th>
+                                <th scope="col">Horário de Ida</th>
+                                <th scope="col">Horário de Volta</th>
+                                <th scope="col">Editar/Excluir</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <!-- Loop para exibir cada passagem -->
+                            <tr th:each="passagem : ${passagem}" th:id="'passagem-' + ${passagem.id_passagem}">
+                                <td th:text="${passagem.id_passagem}"></td>
+                                <td th:text="${passagem.destino}"></td>
+                                <td th:text="${passagem.data_de_ida}"></td>
+                                <td th:text="${passagem.data_de_volta}"></td>
+                                <td th:text="${passagem.empresa}"></td>
+                                <td th:text="${passagem.horario_da_ida}"></td>
+                                <td th:text="${passagem.horario_da_volta}"></td>
+                                <td>
+                                    <a th:href="@{/update_passagem/{id}(id=${passagem.id_passagem})}"
+                                        class="btn btn-warning btn-sm">Editar</a>
+                                    <a th:href="@{/excluirPassagem/{id}(id=${passagem.id_passagem})}"
+                                        class="btn btn-danger btn-sm">Excluir</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        </div>
+    </nav>
+
+    <!-- Footer e scripts (mantidos como estão) -->
+    <footer>
+        <p>Boa viagem é uma marca registrada de boaviagem S.A | CNPJ: xxxx | Todos os direitos reservados. Os preços
+            anunciados neste site ou via e-mail promocional podem ser alterados. As fotos contidas nesta página são
+            meramente ilustrativas. Este site trabalha 100% em criptografia SSL.</p>
+    </footer>
+
+</body>
+
+</html>
+
+

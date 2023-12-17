@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:object="${passagem}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Atualizar Usuário</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/style9.css">
+	<script src="/js/updatepassagem.js"></script>
+
+
+	<!-- Adicione estas linhas ao cabeçalho do seu HTML -->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+</head>
+
+<body style="background-color: rgb(205, 227, 233);">
+	<nav>
+		<div>
+			<ul class="nav ">
+				<a class="navbar-brand" id="brand0" href="index.html">
+					<img src=" /img/icone.png" style="width: 120px;" class="img-fluid img-nav">
+				</a>
+				<li class="nav-item">
+					<a class="nav-link" href="index.html">Home</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="Destino.html">Destinos</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="Promoções.html">Promoções</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="Contato.html">Contato</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="usuarios.html" style="color: red">Usuarios</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="reserva.html" style="color: red">Reservas</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="passagem.html" style="color: red">Passagens</a>
+				</li>
+
+				<li>
+					<a href="create_usuarios.html">
+						<img src="/img/cadastrar.png" class="img-fluid loguin-img">
+					</a>
+				</li>
+
+			</ul>
+
+
+		</div>
+	</nav>
+
+
+	<main class="container mt-5">
+		<div class="row">
+			<div class="col-12 col-md-8 col-lg-6 mx-auto">
+				<div class="card bg-light">
+					<div class="card bg-light">
+						<article class="card-body mx-auto" style="max-width: 400px;">
+
+							<h4 class="card-title mt-3 text-left">Atualizar Passagens</h4>
+							<p style="color: red; font-weight: bold;">Campos obrigatórios*</p>
+
+
+							<form th:action="@{/update_passagem}" th:object="${passagem}" method="post" onsubmit="return updatepassagem();">
+
+
+								<div class="form-group">
+									<label for="id_passagem" style="color: grey;"><strong>Id da passagem:( Campo não
+											editavel):</strong></label>
+									<input type="text" th:id="id_passagem" th:name="id_passagem" class="form-control"
+										th:value="${passagem.id_passagem}" >
+								</div>
+
+
+
+								<div class="form-group">
+									<label for="destino"><strong>Destino*</strong></label> <input type="text"
+										th:id="destino" th:name="destino" class="form-control"
+										th:value="${passagem.destino}">
+								</div>
+
+								<div class="form-group">
+									<label for="data_de_ida"><strong>Data de ida*</strong></label>
+									<input type="text" th:id="data_de_ida" th:name="data_de_ida"
+										class="form-control datepicker" placeholder="Data separada por hifén"
+										th:value="${passagem.data_de_ida}" />
+								</div>
+
+								<div class="form-group">
+									<label for="data_de_volta"><strong>Data de volta*</strong></label>
+									<input type="text" th:id="data_de_volta" th:name="data_de_volta"
+										class="form-control datepicker" placeholder="Data separada por hifén"
+										th:value="${passagem.data_de_volta}" />
+								</div>
+
+								<div class="form-group">
+									<label for="empresa"><strong>Empresa*</strong></label> <input type="text"
+										th:id="empresa" th:name="empresa" class="form-control"
+										th:value="${passagem.empresa}">
+								</div>
+
+
+								<div class="form-group">
+									<label for="horario_da_ida"><strong>Horario da ida:</strong></label>
+									<input type="text" th:id="horario_da_ida" th:name="horario_da_ida"
+										class="form-control" placeholder="Formato 00:00"
+										th:value="${passagem.horario_da_ida}" />
+								</div>
+
+								<div class="form-group">
+									<label for="horario_da_volta"><strong>Horario da volta:</strong></label>
+									<input type="text" th:id="horario_da_volta" th:name="horario_da_volta"
+										class="form-control" placeholder="Formato 00:00"
+										th:value="${passagem.horario_da_volta}" />
+								</div>
+
+								<p></p>
+
+								<button type="submit" class="btn btn-primary btn-lg">Atualizar passagem</button>
+								<a href="passagem.html" class="btn btn-danger" style="margin-left: 10px">Cancelar</a>
+								</a>
+							</form>
+
+					</div>
+				</div>
+			</div>
+	</main>
+
+</body>
+<footer>
+	<p>Boa viagem é uma marca registrada de boaviagem S.A | CNPJ: xxxx | Todos os direitos reservados. Os preços
+		anunciados neste site ou via e-mail promocional podem ser alterados. As fotos contidas nesta página são
+		meramente ilustrativas. Este site trabalha 100% em criptografia SSL.</p>
+</footer>
+
+</html>
+
+
+<script>
+	$(document).ready(function () {
+		// Inicializa os datepickers
+		$(".datepicker").datepicker({
+			dateFormat: "dd-mm-yy", // Formato da data
+			changeMonth: true,
+			changeYear: true
+		});
+	});
+</script>
